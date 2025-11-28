@@ -1,0 +1,85 @@
+$schema: https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/main/schemas/architecture_definition.json
+name: MattG
+management_groups:
+  - archetypes:
+    - root-custom
+    - amba_root
+    display_name: MattG Root
+    exists: false
+    id: mattg-root
+    parent_id: null
+
+
+  - archetypes:
+    - platform
+    - amba_platform
+    display_name: Platform
+    exists: false
+    id: mattg-platform
+    parent_id: mattg-root
+
+  - archetypes:
+    - landing_zones
+    - amba_landing_zones
+    display_name: Landing zones
+    exists: false
+    id: mattg-landingzones
+    parent_id: mattg-root
+
+  - archetypes:
+    - corp
+    display_name: Corp
+    exists: false
+    id: mattg-corp
+    parent_id: mattg-landingzones
+
+  - archetypes:
+    - online
+    display_name: Online
+    exists: false
+    id: mattg-online
+    parent_id: mattg-landingzones
+
+  - archetypes:
+    display_name: Legacy
+    exists: false
+    id: mattg-legacy
+    parent_id: mattg-landingzones
+
+  - archetypes:
+    - sandbox
+    display_name: Sandbox
+    exists: false
+    id: mattg-sandbox
+    parent_id: mattg-root
+
+  - archetypes:
+    - management
+    - amba_management
+    display_name: Management
+    exists: false
+    id: mattg-management
+    parent_id: mattg-platform
+
+  - archetypes:
+    - security
+    display_name: Security
+    exists: false
+    id: mattg-security
+    parent_id: mattg-platform
+
+  - archetypes:
+    - connectivity
+    - amba_connectivity
+    display_name: Connectivity
+    exists: false
+    id: mattg-connectivity
+    parent_id: mattg-platform
+
+  - archetypes:
+      - decommissioned
+    display_name: Not in use
+    exists: false
+    id: mattg-not-in-use
+    parent_id: mattg-root
+
