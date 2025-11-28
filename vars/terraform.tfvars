@@ -93,7 +93,7 @@ management_group_settings = {
         }
       }
     }
-    mattg-corp = {
+    mattg-private = {
       policy_assignments = {
         Deploy-Private-DNS-Zones = {}
       }
