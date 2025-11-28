@@ -28,16 +28,16 @@ management_groups:
 
   - archetypes:
     - corp
-    display_name: Corp
+    display_name: Private
     exists: false
-    id: mattg-corp
+    id: mattg-private
     parent_id: mattg-landingzones
 
   - archetypes:
     - online
-    display_name: Online
+    display_name: Public
     exists: false
-    id: mattg-online
+    id: mattg-public
     parent_id: mattg-landingzones
 
   - archetypes:
