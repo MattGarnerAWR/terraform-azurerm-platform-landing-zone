@@ -51,7 +51,7 @@ management_group_settings = {
     # }
   }
   policy_assignments_to_modify = {
-    mattg-root = {
+    mattg = {
       policy_assignments = {
         Deploy-MDFC-Config-H224 = {
           parameters = {
@@ -113,17 +113,17 @@ management_group_settings = {
 
 management_group_pim_roles = {
   root_uaa = {
-    management_group_name = "mattg-root"
+    management_group_name = "mattg"
     role_definition_name  = "User Access Administrator"
     approver_group_key    = "platform"
   }
   root_contributor = {
-    management_group_name = "mattg-root"
+    management_group_name = "mattg"
     role_definition_name  = "Contributor"
     approver_group_key    = "platform"
   }
   root_reader = {
-    management_group_name = "mattg-root"
+    management_group_name = "mattg"
     role_definition_name  = "Reader"
   }
   security_contributor = {
