@@ -41,7 +41,7 @@ stages:
               command: 'init'
               workingDirectory: '$(System.DefaultWorkingDirectory)'
               backendType: 'azurerm'
-              backendServiceArm: 'SPN-ADO-Vending'
+              backendServiceArm: 'SPN-Azure-LZ'
               backendAzureRmResourceGroupName: 'rg-tfstate-prod-001'
               backendAzureRmStorageAccountName: 'sttfstatepocproduks001'
               backendAzureRmContainerName: 'tfstate'
@@ -58,7 +58,7 @@ stages:
             inputs:
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)'
-              environmentServiceNameAzureRM: 'SPN-ADO-Vending'
+              environmentServiceNameAzureRM: 'SPN-Azure-LZ'
               commandOptions: '-input=false -var-file="./vars/terraform.tfvars" -out=tfplan'
 
           - task: PublishPipelineArtifact@1
@@ -84,7 +84,7 @@ stages:
               command: 'init'
               workingDirectory: '$(System.DefaultWorkingDirectory)'
               backendType: 'azurerm'
-              backendServiceArm: 'SPN-ADO-Vending'
+              backendServiceArm: 'SPN-Azure-LZ'
               backendAzureRmResourceGroupName: 'rg-tfstate-prod-001'
               backendAzureRmStorageAccountName: 'sttfstatepocproduks001'
               backendAzureRmContainerName: 'tfstate'
@@ -101,5 +101,5 @@ stages:
             inputs:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)'
-              environmentServiceNameAzureRM: 'SPN-ADO-Vending'
+              environmentServiceNameAzureRM: 'SPN-Azure-LZ'
               commandOptions: 'tfplan'
