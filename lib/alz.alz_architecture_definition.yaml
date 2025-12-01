@@ -16,7 +16,7 @@ management_groups:
     display_name: Platform
     exists: false
     id: mattg-platform
-    parent_id: mattg-root
+    parent_id: mattg
 
   - archetypes:
     - landing_zones
@@ -24,7 +24,7 @@ management_groups:
     display_name: Landing zones
     exists: false
     id: mattg-landingzones
-    parent_id: mattg-root
+    parent_id: mattg
 
   - archetypes:
     - corp
@@ -51,7 +51,7 @@ management_groups:
     display_name: Sandbox
     exists: false
     id: mattg-sandbox
-    parent_id: mattg-root
+    parent_id: mattg
 
   - archetypes:
     - management
@@ -81,5 +81,5 @@ management_groups:
     display_name: Not in use
     exists: false
     id: mattg-not-in-use
-    parent_id: mattg-root
+    parent_id: mattg
 
