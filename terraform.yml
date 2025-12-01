@@ -88,7 +88,7 @@ stages:
               backendAzureRmResourceGroupName: 'rg-tfstate-prod-001'
               backendAzureRmStorageAccountName: 'sttfstatepocproduks001'
               backendAzureRmContainerName: 'tfstate'
-              backendAzureRmKey: 'ado-vending/terraform.tfstate'
+              backendAzureRmKey: 'platform-lz/terraform.tfstate'
 
           - task: DownloadPipelineArtifact@2
             displayName: 'Download Plan'
