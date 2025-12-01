@@ -19,7 +19,7 @@ pool:
 variables:
   - group: GitHub  # Variable group containing PAT
   - name: TF_VERSION
-    value: '1.11.4'
+    value: '1.14.0'
   - name: shouldApply
     value: ${{ or(eq(parameters.action, 'plan-and-apply'), eq(variables['Build.Reason'], 'IndividualCI')) }}
 
