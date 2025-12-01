@@ -3,3 +3,5 @@ base_archetype: root
 name: root-custom
 # policy_assignments_to_add:
 #   - "Deny-EncryptionAtHost"
+role_definitions_to_add:
+  - "Subscription-Mover"

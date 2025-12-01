@@ -1,0 +1,21 @@
+{
+    "name": "f7cb3aca-6252-4251-bc32-b8607a81ec87",
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "apiVersion": "2018-01-01-preview",
+    "properties": {
+        "roleName": "Subscription-Mover",
+        "description": "Allows moving subscriptions between management groups within the landing zone structure.",
+        "type": "CustomRole",
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Management/managementGroups/read",
+                    "Microsoft.Management/managementGroups/subscriptions/write"
+                ]
+            }
+        ],
+        "assignableScopes": [
+            "${current_scope_resource_id}"
+        ]
+    }
+}

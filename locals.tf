@@ -249,5 +249,5 @@ locals {
     for k, v in var.management_group_pim_roles : k => v.condition_template != null ? local.condition_builder[v.condition_template] : null
   }
 
-  root_management_group_name = yamldecode(file("${path.root}/lib/architecture_definitions/alz.alz_architecture_definition.yaml")).management_groups[0].id
+  root_management_group_name = yamldecode(file("${path.root}/lib/alz.alz_architecture_definition.yaml")).management_groups[0].id
 }
