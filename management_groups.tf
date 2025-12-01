@@ -3,8 +3,7 @@ module "alz" {
   version = "v0.14.1"
 
   architecture_name                                             = "MattG"
-  parent_resource_id                                            = "mattg"
-  # parent_resource_id                                            = data.azurerm_client_config.current.tenant_id
+  parent_resource_id                                            = data.azurerm_client_config.current.tenant_id
   location                                                      = var.management_group_settings.location
   policy_default_values                                         = local.policy_default_values
   policy_assignments_to_modify                                  = local.policy_assignments_to_modify
