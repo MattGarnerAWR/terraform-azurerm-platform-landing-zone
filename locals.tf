@@ -226,7 +226,7 @@ locals {
     )
   }
 
-  lz_custom_sub_owner = trimprefix(module.alz.role_definition_resource_ids["mattg-root/Subscription-Owner"], "/providers/Microsoft.Management/managementGroups/mattg-root/providers/Microsoft.Authorization/roleDefinitions/")
+  lz_custom_sub_owner = trimprefix(module.alz.role_definition_resource_ids["mattg/Subscription-Owner"], "/providers/Microsoft.Management/managementGroups/mattg/providers/Microsoft.Authorization/roleDefinitions/")
 
   excluded_privileged_roles = [
     "8e3af657-a8ff-443c-a75c-2fe8c4bcb635", # Owner
