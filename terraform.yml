@@ -59,7 +59,7 @@ stages:
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)'
               environmentServiceNameAzureRM: 'SPN-ADO-Vending'
-              commandOptions: '-out=tfplan'
+              commandOptions: '-input=false -var-file="./vars/terraform.tfvars" -out=tfplan'
 
           - task: PublishPipelineArtifact@1
             displayName: 'Publish Plan'
