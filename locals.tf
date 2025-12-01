@@ -226,7 +226,7 @@ locals {
     )
   }
 
-  lz_custom_sub_owner = trimprefix(module.alz.role_definition_resource_ids["mattg/Subscription-Owner"], "/providers/Microsoft.Management/managementGroups/mattg/providers/Microsoft.Authorization/roleDefinitions/")
+  lz_custom_sub_owner = trimprefix(module.alz.role_definition_resource_ids["${local.root_management_group_name}/Subscription-Owner"], "/providers/Microsoft.Management/managementGroups/${local.root_management_group_name}/providers/Microsoft.Authorization/roleDefinitions/")
 
   excluded_privileged_roles = [
     "8e3af657-a8ff-443c-a75c-2fe8c4bcb635", # Owner
@@ -249,5 +249,5 @@ locals {
     for k, v in var.management_group_pim_roles : k => v.condition_template != null ? local.condition_builder[v.condition_template] : null
   }
 
-  root_management_group_name = keys(module.alz.management_group_resource_ids)[0]
+  root_management_group_name = yamldecode(file("${path.root}/lib/architecture_definitions/alz.alz_architecture_definition.yaml")).management_groups[0].id
 }
