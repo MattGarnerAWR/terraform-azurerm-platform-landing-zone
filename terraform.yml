@@ -1,0 +1,105 @@
+trigger:
+  branches:
+    include:
+      - main
+
+parameters:
+  - name: action
+    displayName: 'Pipeline Action'
+    type: string
+    default: 'plan-and-apply'
+    values:
+      - 'plan-only'
+      - 'plan-and-apply'
+
+pool:
+  # name: 'my-agent-pool'
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: GitHub  # Variable group containing PAT
+  - name: TF_VERSION
+    value: '1.11.4'
+  - name: shouldApply
+    value: ${{ or(eq(parameters.action, 'plan-and-apply'), eq(variables['Build.Reason'], 'IndividualCI')) }}
+
+stages:
+  - stage: Plan
+    displayName: 'Terraform Plan'
+    jobs:
+      - job: TerraformPlan
+        displayName: 'Plan'
+        steps:
+          - checkout: self
+            displayName: 'Checkout Code'
+
+          - template: templates/terraform-setup.yml
+
+          - task: TerraformTaskV4@4
+            displayName: 'Terraform Init'
+            inputs:
+              command: 'init'
+              workingDirectory: '$(System.DefaultWorkingDirectory)'
+              backendType: 'azurerm'
+              backendServiceArm: 'SPN-ADO-Vending'
+              backendAzureRmResourceGroupName: 'rg-tfstate-prod-001'
+              backendAzureRmStorageAccountName: 'sttfstatepocproduks001'
+              backendAzureRmContainerName: 'tfstate'
+              backendAzureRmKey: 'platform-lz/terraform.tfstate'
+
+          - task: TerraformTaskV4@4
+            displayName: 'Terraform Validate'
+            inputs:
+              command: 'validate'
+              workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+          - task: TerraformTaskV4@4
+            displayName: 'Terraform Plan'
+            inputs:
+              command: 'plan'
+              workingDirectory: '$(System.DefaultWorkingDirectory)'
+              environmentServiceNameAzureRM: 'SPN-ADO-Vending'
+              commandOptions: '-out=tfplan'
+
+          - task: PublishPipelineArtifact@1
+            displayName: 'Publish Plan'
+            inputs:
+              targetPath: '$(System.DefaultWorkingDirectory)/tfplan'
+              artifact: 'tfplan'
+
+  - stage: Apply
+    displayName: 'Terraform Apply'
+    jobs:
+      - job: TerraformApply
+        displayName: 'Apply'
+        steps:
+          - checkout: self
+            displayName: 'Checkout Code'
+
+          - template: templates/terraform-setup.yml
+
+          - task: TerraformTaskV4@4
+            displayName: 'Terraform Init'
+            inputs:
+              command: 'init'
+              workingDirectory: '$(System.DefaultWorkingDirectory)'
+              backendType: 'azurerm'
+              backendServiceArm: 'SPN-ADO-Vending'
+              backendAzureRmResourceGroupName: 'rg-tfstate-prod-001'
+              backendAzureRmStorageAccountName: 'sttfstatepocproduks001'
+              backendAzureRmContainerName: 'tfstate'
+              backendAzureRmKey: 'ado-vending/terraform.tfstate'
+
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download Plan'
+            inputs:
+              artifact: 'tfplan'
+              path: '$(System.DefaultWorkingDirectory)'
+
+          - task: TerraformTaskV4@4
+            displayName: 'Terraform Apply'
+            inputs:
+              command: 'apply'
+              workingDirectory: '$(System.DefaultWorkingDirectory)'
+              environmentServiceNameAzureRM: 'SPN-ADO-Vending'
+              commandOptions: 'tfplan'

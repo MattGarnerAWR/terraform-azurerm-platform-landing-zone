@@ -58,19 +58,32 @@ provider "alz" {
 }
 
 provider "azurerm" {
-  features {}
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
   subscription_id = "8be4ef68-af99-4631-8f50-d8bdb4d822d8"
+
 }
 
 provider "azurerm" {
   alias = "management"
-  features {}
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
   subscription_id = "8be4ef68-af99-4631-8f50-d8bdb4d822d8"
 }
 
 provider "azurerm" {
   alias = "connectivity"
-  features {}
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
   subscription_id = "8be4ef68-af99-4631-8f50-d8bdb4d822d8"
 }
 

@@ -7,22 +7,22 @@ primary_region = "uksouth"
 management_resource_settings = {
   enabled                      = true
   location                     = "uksouth"
-  log_analytics_workspace_name = "log-mgmt-prod-uks-001"
-  resource_group_name          = "rg-mgmt-prod-001"
+  log_analytics_workspace_name = "log-mgmt-prd-uks-001"
+  resource_group_name          = "rg-mgmt-prd-001"
   user_assigned_managed_identities = {
     ama = {
-      name = "id-ama-prod-uks-001"
+      name = "id-ama-prd-uks-001"
     }
   }
   data_collection_rules = {
     change_tracking = {
-      name = "dcr-change-tracking-prod-uks-001"
+      name = "dcr-change-tracking-prd-uks-001"
     }
     defender_sql = {
-      name = "dcr-defender-sql-prod-uks-001"
+      name = "dcr-defender-sql-prd-uks-001"
     }
     vm_insights = {
-      name = "dcr-vm-insights-prod-uks-001"
+      name = "dcr-vm-insights-prd-uks-001"
     }
   }
 }
@@ -55,7 +55,7 @@ management_group_settings = {
       policy_assignments = {
         Deploy-MDFC-Config-H224 = {
           parameters = {
-            ascExportResourceGroupName                  = "rg-asc-export-prod-001"
+            ascExportResourceGroupName                  = "rg-asc-export-prd-001"
             ascExportResourceGroupLocation              = "UKSouth"
             emailSecurityContact                        = "m.garner@reply.com"
             enableAscForServers                         = "DeployIfNotExists"
@@ -158,7 +158,7 @@ connectivity_type = "hub_and_spoke_vnet"
 
 connectivity_resource_groups = {
   # ddos = {
-  #   name     = "rg-ddos-prod-001"
+  #   name     = "rg-ddos-prd-001"
   #   location = "uksouth"
   #   settings = {
   #     enabled = false
@@ -166,14 +166,14 @@ connectivity_resource_groups = {
   # }
 
   vnet_primary = {
-    name     = "rg-hub-prod-001"
+    name     = "rg-hub-prd-001"
     location = "uksouth"
     settings = {
       enabled = true
     }
   }
   dns = {
-    name     = "rg-privatelink-dns-prod-001"
+    name     = "rg-privatelink-dns-prd-001"
     location = "uksouth"
     settings = {
       enabled = true
@@ -189,7 +189,7 @@ hub_and_spoke_networks_settings = {
   # ddos_protection_plan = {
   #   enabled             = false
   #   name                = "ddos"
-  #   resource_group_name = "rg-connectivity-ddos-prod-001"
+  #   resource_group_name = "rg-connectivity-ddos-prd-001"
   #   location            = "uksouth"
   # }
 }
@@ -207,31 +207,31 @@ hub_virtual_networks = {
       private_dns_resolver                  = "false"
     }
     hub_virtual_network = {
-      name                          = "vnet-hub-prod-uks-001"
+      name                          = "vnet-hub-prd-uks-001"
       address_space                 = ["10.180.0.0/24"]
       routing_address_space         = []
-      route_table_name_firewall     = "rt-azfw-prod-uks-001"
-      route_table_name_user_subnets = "rt-user-prod-uks-001"
+      route_table_name_firewall     = "rt-azfw-prd-uks-001"
+      route_table_name_user_subnets = "rt-user-prd-uks-001"
       subnets                       = {}
     }
     firewall = {
       subnet_address_prefix            = "10.180.0.0/26"
       management_subnet_address_prefix = "10.180.0.192/26"
-      name                             = "fw-hub-prod-uks-001"
+      name                             = "fw-hub-prd-uks-001"
       sku_tier                         = "Basic"
       default_ip_configuration = {
         public_ip_config = {
-          name = "pip-fw-hub-prod-uks-001"
+          name = "pip-fw-hub-prd-uks-001"
         }
       }
       management_ip_configuration = {
         public_ip_config = {
-          name = "pip-fw-hub-mgmt-prod-uks-001"
+          name = "pip-fw-hub-mgmt-prd-uks-001"
         }
       }
     }
     firewall_policy = {
-      name = "afwp-hub-prod-uks-001"
+      name = "afwp-hub-prd-uks-001"
       sku  = "Basic"
     }
 
@@ -249,13 +249,13 @@ hub_virtual_networks = {
     }
     bastion = {
       subnet_address_prefix = "10.180.0.128/26"
-      name                  = "bas-hub-prod-uks-001"
+      name                  = "bas-hub-prd-uks-001"
       # bastion_host = {
-      #   name  = "bas-hub-prod-uks-001"
+      #   name  = "bas-hub-prd-uks-001"
       #   zones = [1, 2, 3]
       # }
       bastion_public_ip = {
-        name = "pip-bas-hub-prod-uks-001"
+        name = "pip-bas-hub-prd-uks-001"
         # zones = [1, 2, 3]
       }
     }
@@ -265,15 +265,15 @@ hub_virtual_networks = {
 #---------Security-------------------------
 
 security_settings = {
-  resource_group_name          = "rg-security-prod-001"
-  log_analytics_workspace_name = "log-security-prod-uks-001"
+  resource_group_name          = "rg-security-prd-001"
+  log_analytics_workspace_name = "log-security-prd-uks-001"
 }
 
 #---------AMBA-----------------------------
 amba_settings = {
   location                                                  = "uksouth"
-  resource_group_name                                       = "rg-amba-monitoring-prod-001"
-  user_assigned_managed_identity_name                       = "id-amba-prod-uks-001"
+  resource_group_name                                       = "rg-amba-monitoring-prd-001"
+  user_assigned_managed_identity_name                       = "id-amba-prd-uks-001"
   bring_your_own_user_assigned_managed_identity             = false
   bring_your_own_user_assigned_managed_identity_resource_id = ""
   amba_disable_tag_name                                     = "MonitorDisable"

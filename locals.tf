@@ -121,7 +121,7 @@ locals {
     }
   }
   #-------DNS zones-------
-  resource_group = "rg-private-dns-prod-001"
+  resource_group = "rg-private-dns-prd-001"
 
   dns_zone_ids = {
     azureMachineLearningWorkspacePrivateDnsZoneId       = "privatelink.api.azureml.ms"
@@ -203,7 +203,7 @@ locals {
   policy_assignment_parameters = {
     "Deploy-AzActivity-Log" = {
       logAnalytics = jsonencode({
-        value = "/subscriptions/${var.security_sub_id}/resourceGroups/rg-security-prod-001/providers/Microsoft.OperationalInsights/workspaces/log-security-prod-uks-001"
+        value = "/subscriptions/${var.security_sub_id}/resourceGroups/rg-security-prd-001/providers/Microsoft.OperationalInsights/workspaces/log-security-prd-uks-001"
       })
     }
     "Deploy-Private-DNS-Zones" = local.dns_zone_parameters
