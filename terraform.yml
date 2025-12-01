@@ -7,7 +7,7 @@ parameters:
   - name: action
     displayName: 'Pipeline Action'
     type: string
-    default: 'plan-and-apply'
+    default: 'plan-only'
     values:
       - 'plan-only'
       - 'plan-and-apply'
