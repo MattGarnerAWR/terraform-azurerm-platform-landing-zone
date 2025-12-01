@@ -15,7 +15,7 @@ resource "azuread_group_without_members" "pim_approvers" {
 resource "azurerm_role_management_policy" "pim_roles" {
   for_each = var.management_group_pim_roles
 
-  scope              = module.alz.management_group_resource_ids[each.value.management_group_name]
+  scope              = each.value.management_group_name == "mattg" ? "/providers/Microsoft.Management/managementGroups/mattg" : module.alz.management_group_resource_ids[each.value.management_group_name]
   role_definition_id = data.azurerm_role_definition.pim_roles[each.key].role_definition_id
 
   activation_rules {
