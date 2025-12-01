@@ -1,0 +1,15 @@
+
+steps:
+  - task: Bash@3
+    displayName: 'Configure Git for GitHub Modules'
+    inputs:
+      targetType: 'inline'
+      script: |
+        git config --global url."https://$(PAT)@github.com/".insteadOf "https://github.com/"
+    env:
+      PAT: $(PAT)
+
+  - task: TerraformInstaller@1
+    displayName: 'Install Terraform'
+    inputs:
+      terraformVersion: $(TF_VERSION)
