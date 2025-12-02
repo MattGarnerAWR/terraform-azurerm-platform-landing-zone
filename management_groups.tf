@@ -38,4 +38,8 @@ resource "azapi_update_resource" "management_group_settings" {
       requireAuthorizationForGroupCreation = true
     }
   }
+
+  lifecycle {
+    ignore_changes = [body.properties.defaultManagementGroup]
+  }
 }
