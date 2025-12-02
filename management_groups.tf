@@ -28,10 +28,10 @@ module "alz" {
 }
 
 resource "azapi_update_resource" "management_group_settings" {
-  type      = "Microsoft.Management/managementGroups/settings@2024-02-01-preview"
+  type = "Microsoft.Management/managementGroups/settings@2024-02-01-preview"
   # name      = "default"
   parent_id = "/providers/Microsoft.Management/managementGroups/${data.azurerm_client_config.current.tenant_id}"
-  name = "default"
+  name      = "default"
   body = {
     properties = {
       defaultManagementGroup               = module.alz.management_group_resource_ids["mattg-not-in-use"]
