@@ -10,6 +10,7 @@
             {
                 "actions": [
                     "Microsoft.Management/managementGroups/read",
+                    "Microsoft.Management/managementGroups/write",
                     "Microsoft.Management/managementGroups/subscriptions/write"
                 ]
             }
